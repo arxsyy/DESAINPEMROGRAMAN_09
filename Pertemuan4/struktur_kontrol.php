@@ -64,4 +64,14 @@ for ($i = 2; $i < (count($nilaiMtk) - 2); $i++) {
 }
 $rataRata = $jumlahNilaiMtk / (count($nilaiMtk) - 4); 
 echo "<br> Rata-rata nilai mtk = $rataRata";
+
+echo "<br>";
+$totalBayar = 120000;
+
+if ($totalBayar > 100000){
+    echo "<br>Selamat anda mendapatkan diskon 20% <br>";
+    echo "Total belanja anda : $totalBayar <br>";
+    echo "Total bayar : ". $totalBayar-($totalBayar*0.20). "<br>";
+}else 
+    echo "<br>Total bayar : $totalBayar";
 ?>
