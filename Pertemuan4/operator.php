@@ -34,4 +34,16 @@ echo "$a < $b: " . ($hasilLebihKecil ? 'Benar' : 'Salah') . "<br>";
 echo "$a > $b: " . ($hasilLebihBesar ? 'Benar' : 'Salah') . "<br>";
 echo "$a <= $b: " . ($hasilLebihKecilSama ? 'Benar' : 'Salah') . "<br>";
 echo "$a >= $b: " . ($hasilLebihBesarSama ? 'Benar' : 'Salah') . "<br>";
+
+$hasilAnd = $a && $b;
+$hasilOr = $a || $b;
+$hasilNotA = !$a;
+$hasilNotB = !$b;
+echo "<br>"; 
+echo "Hasil Operasi Logika:<br>";
+echo "$a && $b: " . ($hasilAnd ? 'Benar' : 'Salah') . "<br>";
+echo "$a || $b: " . ($hasilOr ? 'Benar' : 'Salah') . "<br>";
+echo "!$a: " . ($hasilNotA ? 'Benar' : 'Salah') . "<br>";
+echo "!$b: " . ($hasilNotB ? 'Benar' : 'Salah') . "<br>";
+echo "<br>";
 ?>
