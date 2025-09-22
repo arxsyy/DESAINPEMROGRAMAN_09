@@ -46,4 +46,15 @@ echo "$a || $b: " . ($hasilOr ? 'Benar' : 'Salah') . "<br>";
 echo "!$a: " . ($hasilNotA ? 'Benar' : 'Salah') . "<br>";
 echo "!$b: " . ($hasilNotB ? 'Benar' : 'Salah') . "<br>";
 echo "<br>";
+
+$a += $b;
+echo "Hasil += : $a<br>";
+$a -= $b;
+echo "Hasil -= : $a<br>";
+$a *= $b;
+echo "Hasil *= : $a<br>";
+$a /= $b;
+echo "Hasil /= : $a<br>";
+$a %= $b;
+echo "Hasil %= : $a<br>";
 ?>
