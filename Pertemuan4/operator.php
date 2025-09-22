@@ -18,4 +18,20 @@ echo "Hasil Perkalian: $a * $b = $hasilKali<br>";
 echo "Hasil Pembagian: $a / $b = $hasilBagi<br>";
 echo "Sisa Bagi: $a % $b = $sisaBagi<br>";
 echo "Hasil Pangkat: $a ** $b = $pangkat<br>";
+
+$hasilSama = $a == $b;
+$hasilTidakSama = $a != $b;
+$hasilLebihKecil = $a < $b;
+$hasilLebihBesar = $a > $b;
+$hasilLebihKecilSama = $a <= $b;
+$hasilLebihBesarSama = $a >= $b;
+
+echo "<br>"; 
+echo "Hasil Perbandingan:<br>";
+echo "$a == $b: " . ($hasilSama ? 'Benar' : 'Salah') . "<br>";
+echo "$a != $b: " . ($hasilTidakSama ? 'Benar' : 'Salah') . "<br>";
+echo "$a < $b: " . ($hasilLebihKecil ? 'Benar' : 'Salah') . "<br>";
+echo "$a > $b: " . ($hasilLebihBesar ? 'Benar' : 'Salah') . "<br>";
+echo "$a <= $b: " . ($hasilLebihKecilSama ? 'Benar' : 'Salah') . "<br>";
+echo "$a >= $b: " . ($hasilLebihBesarSama ? 'Benar' : 'Salah') . "<br>";
 ?>
