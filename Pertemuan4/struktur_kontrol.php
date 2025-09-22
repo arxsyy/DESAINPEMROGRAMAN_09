@@ -54,4 +54,14 @@ foreach ($nilaiSiswa as $nilai) {
 
     echo "Nilai : $nilai (Lulus) <br>";
 }
+
+$nilaiMtk = [85, 92, 78, 64, 90, 75, 88, 79, 70, 96];
+sort($nilaiMtk); 
+
+$jumlahNilaiMtk = 0;
+for ($i = 2; $i < (count($nilaiMtk) - 2); $i++) {
+    $jumlahNilaiMtk += $nilaiMtk[$i]; 
+}
+$rataRata = $jumlahNilaiMtk / (count($nilaiMtk) - 4); 
+echo "<br> Rata-rata nilai mtk = $rataRata";
 ?>
