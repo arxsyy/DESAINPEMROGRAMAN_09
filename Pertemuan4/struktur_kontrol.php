@@ -74,4 +74,9 @@ if ($totalBayar > 100000){
     echo "Total bayar : ". $totalBayar-($totalBayar*0.20). "<br>";
 }else 
     echo "<br>Total bayar : $totalBayar";
+
+$skorPemain = 600;
+echo "<br>Total skor pemain adalah : $skorPemain";
+$hadiahTambahan = ($skorPemain>500) ? "YA" : "TIDAK";
+echo "<br>Apakah pemain mendapatkan hadiah tambahan ? $hadiahTambahan";
 ?>
