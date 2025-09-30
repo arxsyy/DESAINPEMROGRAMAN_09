@@ -1,6 +1,6 @@
 <?php
 
-function perkenalan($nama, $salam){
+function perkenalan($nama, $salam = "Assalamualaikum"){
     echo $salam. ", ";
     echo "Perkenalkan, nama saya ".$nama."<br/>";
     echo "Senang berkenalan dengan Anda<br/>";
@@ -13,6 +13,6 @@ echo "<hr>";
 $saya = "Arsy";
 $ucapanSalam = "Selamat pagi";
 
-perkenalan($saya, $ucapanSalam);
+perkenalan($saya);
 
 ?>
