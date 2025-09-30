@@ -1,18 +1,25 @@
 <?php
 
-function perkenalan($nama, $salam = "Assalamualaikum"){
-    echo $salam. ", ";
-    echo "Perkenalkan, nama saya ".$nama."<br/>";
-    echo "Senang berkenalan dengan Anda<br/>";
+// function perkenalan($nama, $salam = "Assalamualaikum"){
+//     echo $salam. ", ";
+//     echo "Perkenalkan, nama saya ".$nama."<br/>";
+//     echo "Senang berkenalan dengan Anda<br/>";
+// }
+
+// perkenalan("Arsy", "Hallo");
+
+// echo "<hr>";
+
+// $saya = "Arsy";
+// $ucapanSalam = "Selamat pagi";
+
+// perkenalan($saya);
+
+function hitungUmur($thn_lahir, $thn_sekarang){
+    $umur = $thn_sekarang - $thn_lahir;
+    return $umur;
 }
 
-perkenalan("Arsy", "Hallo");
-
-echo "<hr>";
-
-$saya = "Arsy";
-$ucapanSalam = "Selamat pagi";
-
-perkenalan($saya);
+echo "Umur saya adalah ".hitungUmur(2005, 2025)." tahun";
 
 ?>
