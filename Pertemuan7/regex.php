@@ -44,4 +44,13 @@ if (preg_match($pattern, $text, $matches)) {
 } else {
     echo "Tidak ada yang cocok!<br>";
 }
+
+// Percobaan 5.6
+$pattern = '/ma{2,4}kan/'; // Cocokkan "ma", "maa", "maaa", atau "maaaa".
+$text = 'makan maakan maaaakan maaaaakan';
+if (preg_match_all($pattern, $text, $matches)) {
+    echo "Cocokkan: " . implode(", ", $matches[0]) . "<br>";
+} else {
+    echo "Tidak ada yang cocok!<br>";
+}
 ?>
