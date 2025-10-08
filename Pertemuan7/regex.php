@@ -35,4 +35,13 @@ if (preg_match($pattern, $text, $matches)) {
 } else {
     echo "Tidak ada yang cocok!<br>";
 }
+
+// Percobaan 5.5
+$pattern = '/ca?t/'; // Cocokkan "ct" atau "cat".
+$text = 'The cat sat on the mat.';
+if (preg_match($pattern, $text, $matches)) {
+    echo "Cocokkan: " . $matches[0] . "<br>";
+} else {
+    echo "Tidak ada yang cocok!<br>";
+}
 ?>
