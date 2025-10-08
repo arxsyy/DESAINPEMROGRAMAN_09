@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Form Input dengan Validasi</title>
+    <title>Form Input dengan Validasi dan AJAX</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
@@ -18,9 +18,13 @@
         <input type="submit" value="Submit">
     </form>
 
+    <div id="result"></div>
+
     <script>
         $(document).ready(function() {
             $("#myForm").submit(function(event) {
+                event.preventDefault(); // Mencegah reload halaman
+
                 var nama = $("#nama").val();
                 var email = $("#email").val();
                 var valid = true;
@@ -39,9 +43,18 @@
                     $("#email-error").text("");
                 }
 
-                if (!valid) {
-                    event.preventDefault();
-                    // Menghentikan pengiriman form jika validasi gagal
+                if (valid) {
+                    $.ajax({
+                        url: "proses_validasi.php",
+                        type: "POST",
+                        data: { nama: nama, email: email },
+                        success: function(response) {
+                            $("#result").html(response); // Tampilkan hasil dari PHP
+                        },
+                        error: function() {
+                            $("#result").html("<span style='color:red'>Terjadi kesalahan saat mengirim data.</span>");
+                        }
+                    });
                 }
             });
         });
