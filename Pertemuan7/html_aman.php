@@ -6,6 +6,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
 
+        $email = $_POST['email'];
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Input yang Anda masukkan adalah: " . $input . "<br>";
+        echo "Email yang Anda masukkan adalah: " . $email;        } else {
+        echo "Email yang Anda masukkan tidak valid.";
+        }
     } else {
         echo "Tidak ada input yang diterima.";
     }
