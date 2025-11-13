@@ -1,0 +1,72 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fce4ec;
+    background-image: url('wlp4.png');
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh; /* supaya tinggi penuh layar */
+    display: flex;
+    justify-content: center; /* tengah horizontal */
+    align-items: center; 
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  header img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ff80ab;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  form input,
+  form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  form input:focus,
+  form select:focus {
+    border-color: #ff80ab;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 128, 171, 0.5);
+}
+  
+  form input[type="submit"] {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  form input[type="submit"]:hover {
+    background-color: #d81b60;
+  }
+
+  form {
+    margin: 20px 0;
+  }
+
+  form input, button{
+      padding: 5px;
+  }

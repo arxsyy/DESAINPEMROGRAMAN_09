@@ -1,0 +1,74 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fce4ec;
+    background-image: url('wlp4.png');
+    background-repeat: repeat;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ff80ab;
+    font-family: "Quicksand", sans-serif;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* input dan select dibuat ramping tapi tetap sejajar */
+form input,
+form select,
+form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px 10px; /* tinggi dikurangi */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* efek fokus lembut */
+form input:focus,
+form select:focus {
+    border-color: #ff80ab;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 128, 171, 0.5);
+}
+
+/* tombol submit */
+form input[type="submit"] {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 9px; /* tombol juga disesuaikan biar pas */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+form input[type="submit"]:hover {
+    background-color: #d81b60;
+    transform: scale(1.02);
+}
