@@ -1,9 +1,16 @@
 <?php
-// dashboard.php
+// BARU: Tambah session dan authentication check
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['error_message'] = 'Please login first to access dashboard.';
+    header("Location: login.php");
+    exit;
+}
+
 require_once 'koneksi.php';
 
-// ====== ACTIONS (POST) ======
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $id = (int)($_POST['id'] ?? 0);
 
@@ -33,9 +40,8 @@ require_once 'koneksi.php';
 
     header("Location: dashboard.php");
     exit;
-    }
+}
 
-// ====== READ ======
 $editId = isset($_GET['edit']) ? (int)$_GET['edit'] : 0;
 $res = pg_query($conn, "SELECT * FROM bookings ORDER BY booking_date ASC, booking_time ASC, id DESC");
 $rows = $res ? pg_fetch_all($res) : [];
@@ -46,6 +52,8 @@ $rows = $res ? pg_fetch_all($res) : [];
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Booking Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
     :root{
         --pink:#ff7aa2;
@@ -58,29 +66,141 @@ $rows = $res ? pg_fetch_all($res) : [];
     table{width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--border)}
     th,td{border-bottom:1px solid #f7d7e3; padding:8px; text-align:left; vertical-align:middle}
     th{background:#ffe3ef; color:#a43b66}
-    input, select{padding:6px 10px; border:1px solid #f1c5d6; border-radius:8px}
+    
+    /* UBAH: Input dan select ukuran kecil */
+    input, select{
+        padding:6px 10px; 
+        border:1px solid #f1c5d6; 
+        border-radius:8px;
+        font-size: 0.875rem;  /* ✅ BARU: Font size lebih kecil */
+    }
+    
+    /* BARU: Khusus untuk input di dalam table saat edit */
+    td input, td select {
+        font-size: 0.85rem;      /* ✅ Lebih kecil lagi */
+        padding: 4px 8px;        /* ✅ Padding lebih kecil */
+        max-width: 100%;         /* ✅ Tidak overflow */
+    }
+    
+    /* BARU: Input number lebih kecil */
+    td input[type="number"] {
+        width: 70px;
+    }
+    
+    /* BARU: Input date dan time kompak */
+    td input[type="date"],
+    td input[type="time"] {
+        font-size: 0.8rem;
+        padding: 3px 6px;
+    }
+    
     .empty{padding:10px; background:#fff; border:1px dashed #f1c5d6; border-radius:8px}
     .badge{padding:2px 10px; border-radius:999px; font-size:12px; border:1px solid #f1c5d6; background:#fff1f6; color:#d64b7f}
     .badge.done{background:#e7ffe9; color:#1b7d34; border-color:#bde3c6}
 
-    /* Tombol */
-    .actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .btn{display:inline-block; padding:10px 16px; border-radius:12px; border:1px solid transparent; cursor:pointer; text-decoration:none; font-weight:600; line-height:1; font-size:14px}
-    .btn-primary{background:var(--pink); color:#fff; border-color:var(--pink)}
-    .btn-primary:hover{background:var(--pink-dark); border-color:var(--pink-dark)}
-    .btn-outline{background:#fff; color:var(--pink); border:1px solid var(--pink)}
-    .btn-outline:hover{background:var(--pink-50)}
-    .btn-link{background:transparent; border:0; color:var(--pink); text-decoration:none; padding:0; font-weight:600}
-    .btn-link:hover{text-decoration:underline}
+    .actions {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    td.actions {
+        white-space: nowrap;
+        min-width: 220px;
+    }
+
+    /* Button compact */
+    .btn {
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .btn-primary {
+        background: var(--pink);
+        color: #fff;
+        border: 1px solid var(--pink);
+    }
+
+    .btn-outline {
+        background: #fff;
+        color: var(--pink);
+        border: 1px solid var(--pink);
+        padding: 5px 10px;
+    }
+
+    .btn-link {
+        background: transparent;
+        border: 0;
+        color: var(--pink);
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .navbar-custom {
+        background: #fff;
+        border-bottom: 2px solid var(--border);
+        padding: 15px 0;
+        margin-bottom: 20px;
+    }
+    
+    .navbar-custom .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .navbar-brand {
+        color: var(--pink);
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+    
+    .navbar-user {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .btn-logout {
+        background: var(--pink);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .btn-logout:hover {
+        background: var(--pink-dark);
+    }
 </style>
 </head>
 <body>
 
+<!-- BARU: Navbar dengan info user dan tombol logout -->
+<div class="navbar-custom">
+    <div class="container">
+        <a href="#" class="navbar-brand">💅 Nailash Dashboard</a>
+        <div class="navbar-user">
+            <span>Welcome, <strong><?= htmlspecialchars($_SESSION['user_name']) ?></strong></span>
+            <a href="logout.php" class="btn-logout">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
 <h1>Booking Dashboard</h1>
 
 <?php if (!$rows): ?>
     <div class="empty">Belum ada data booking.</div>
-    <?php else: ?>
+<?php else: ?>
     <table>
     <thead>
         <tr>
@@ -102,7 +222,6 @@ $rows = $res ? pg_fetch_all($res) : [];
     ?>
         <tr>
         <?php if ($isEdit): ?>
-            <!-- MODE EDIT -->
             <form method="post">
             <input type="hidden" name="id" value="<?= htmlspecialchars($r['id']) ?>">
             <td>#<?= htmlspecialchars($r['id']) ?></td>
@@ -140,7 +259,6 @@ $rows = $res ? pg_fetch_all($res) : [];
                 <a class="btn-link" href="dashboard.php">Cancel</a>
             </td>
         <?php else: ?>
-            <!-- MODE VIEW -->
             <td>#<?= htmlspecialchars($r['id']) ?></td>
             <td><?= htmlspecialchars($r['name']) ?></td>
             <td><?= htmlspecialchars($r['phone']) ?></td>
@@ -170,6 +288,10 @@ $rows = $res ? pg_fetch_all($res) : [];
 <?php endif; ?>
 
 <p style="margin-top:12px"><a class="btn-link" href="home.php">← Back to Home</a></p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

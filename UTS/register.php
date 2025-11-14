@@ -1,21 +1,15 @@
 <?php
+// FILE BARU: Halaman registrasi admin
 session_start();
-
-// BARU: Redirect jika sudah login
-if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
-    exit;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Member</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Register Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
@@ -75,10 +69,6 @@ if (isset($_SESSION['user_id'])) {
             background-color: #d81b60;
         }
 
-        form {
-            margin: 20px 0;
-        }
-
         .alert {
             padding: 10px;
             margin-bottom: 15px;
@@ -118,41 +108,41 @@ if (isset($_SESSION['user_id'])) {
 <body>
     <div class="container">
         <header>
-            <h1>Login Admin</h1>
+            <h1>Register Admin</h1>
         </header>
         
-        <form id="myForm" method="post" action="login_process.php"> 
-            
-            <!-- BARU: Alert untuk error dan success message -->
-            <?php if (isset($_SESSION['error_message'])): ?>
-                <div class="alert alert-danger">
-                    <?= htmlspecialchars($_SESSION['error_message']) ?>
-                </div>
-                <?php unset($_SESSION['error_message']); ?>
-            <?php endif; ?>
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <div class="alert alert-danger">
+                <?= htmlspecialchars($_SESSION['error_message']) ?>
+            </div>
+            <?php unset($_SESSION['error_message']); ?>
+        <?php endif; ?>
 
-            <?php if (isset($_SESSION['success_message'])): ?>
-                <div class="alert alert-success">
-                    <?= htmlspecialchars($_SESSION['success_message']) ?>
-                </div>
-                <?php unset($_SESSION['success_message']); ?>
-            <?php endif; ?>
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="alert alert-success">
+                <?= htmlspecialchars($_SESSION['success_message']) ?>
+            </div>
+            <?php unset($_SESSION['success_message']); ?>
+        <?php endif; ?>
+
+        <form method="post" action="register_process.php">
+            <label for="full_name">Full Name : </label>
+            <input type="text" id="full_name" name="full_name" required>
 
             <label for="email">Email : </label>
-            <input type="text" id="email" name="email" required> <br>
-            <br>
+            <input type="email" id="email" name="email" required>
 
             <label for="password">Password : </label>
-            <input type="password" id="password" name="password" required> <br>
-            <br>
+            <input type="password" id="password" name="password" required>
 
-            <input type="submit" value="Login">
+            <label for="confirm_password">Confirm Password : </label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <input type="submit" value="Register">
         </form>
 
-        <!-- BARU: Link ke register dan back home -->
-        <div class="text-center">
-            <p>Don't have an account? <a href="register.php" class="text-pink"><strong>Register here</strong></a></p>
-            <a href="index.php" class="text-pink">← Back to Home</a>
+        <div class="text-center" style="margin-top: 15px;">
+            <p>Already have an account? <a href="login.php" class="text-pink"><strong>Login here</strong></a></p>
         </div>
     </div>
 

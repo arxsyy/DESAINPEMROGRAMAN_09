@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nailash Studio — Home</title>
+  <title>Nailash Studio – Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- BARU: Tambah Bootstrap -->
+  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -110,25 +112,27 @@
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="grid gallery">
-      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=300" alt="">
-      <img src="https://images.unsplash.com/photo-1597687226795-9385c2374b56?q=80&w=300" alt="">
-      <img src="https://images.unsplash.com/photo-1607779097040-26c05e9c5a7b?q=80&w=300" alt="">
-      <img src="https://images.unsplash.com/photo-1601672453376-b8c3c2f21b3f?q=80&w=300" alt="">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=300&q=80" alt="Nail Art 1">
+      <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=300&q=80" alt="Nail Art 2">
+      <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=300&q=80" alt="Nail Art 3">
+      <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=300&q=80" alt="Nail Art 4">
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Jl. Contoh No. 123, Malang<br>WA: 0812-3456-7890 • Open 10:00–18:00</p>
+    <p>Jl. Soekarno Hatta No. 123, Malang<br>WA: 0812-3456-7890 • Open 10:00–18:00</p>
   </section>
 
   <footer>
-    © <span id="y"></span> Nailash Studio — <a href="login.php">Admin Login</a>
+    © <span id="y"></span> Nailash Studio – <a href="login.php">Admin Login</a>
   </footer>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- BARU: Bootstrap JS -->
 
 </body>
 </html>
