@@ -90,4 +90,21 @@
             }
         });
     });
+    
+    $(document).on('click', '.hapus_data', function () {
+        var id = $(this).attr('id');
+        $.ajax({
+            type: 'POST',
+            url: "hapus_data.php",
+            data: { id: id },
+            success: function () {
+                $('.data').load("data.php");
+                alert("Data berhasil dihapus!");
+                location.reload();
+            },
+            error: function (response) {
+                console.log(response.responseText);
+            }
+        });
+    });
 </script>
