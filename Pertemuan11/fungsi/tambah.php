@@ -36,12 +36,12 @@ if (!empty($_SESSION['username'])) {
         $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
 
         $query_user = "INSERT INTO user (username, password, salt, level)
-                       VALUES ('$username', '$hashed_password', '$salt', '$level')";
+                        VALUES ('$username', '$hashed_password', '$salt', '$level')";
         if (mysqli_query($koneksi, $query_user)) {
             $user_id = mysqli_insert_id($koneksi);
 
             $query_anggota = "INSERT INTO anggota (nama, jenis_kelamin, alamat, no_telp, user_id, jabatan_id)
-                              VALUES ('$nama', '$jenis_kelamin', '$alamat', '$no_telp', '$user_id', '$jabatan')";
+                            VALUES ('$nama', '$jenis_kelamin', '$alamat', '$no_telp', '$user_id', '$jabatan')";
             if (mysqli_query($koneksi, $query_anggota)) {
                 pesan('success', "Anggota baru berhasil ditambahkan.");
             } else {
